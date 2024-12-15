@@ -135,11 +135,7 @@ async def upload(bot: Client, m: Message):
         count = int(raw_text)
 
     
-                      	if ".pdf" in a:
-                      		Show = f"⥥ 🄳🄾🅆🄽🄻🄾🄰🄳🄸🄽🄶⬇️⬇️... »\n\n📝Name » {name}\n❄Quality » {raw_text2}\n\n🔗URL » {url}"
-                      		prog = await m.reply_text(Show)
-                      		file_path = await helper.download_file(url, name)
-                      		copy = helper.decrypt_file(file_path, key)
+               
         try:
         for i in range(count - 1, len(links)):
 
