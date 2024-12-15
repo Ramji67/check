@@ -135,8 +135,7 @@ async def upload(bot: Client, m: Message):
         count = int(raw_text)
 
     
-               
-        try:
+            try:
         for i in range(count - 1, len(links)):
 
             V = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","") # .replace("mpd","m3u8")
@@ -212,14 +211,26 @@ async def upload(bot: Client, m: Message):
             else:
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
-            try:
+            if "jw-prod" in url:
+                cmd = f'yt-dlp --cookies "{cookies_path}" --user-agent "{user_agent}" --referer "{referer}" -o "{name}.mp4" "{url}"'
+            else:
+                cmd = f'yt-dlp --cookies "{cookies_path}" --user-agent "{user_agent}" --referer "{referer}" -f "{ytf}" "{url}" -o "{name}.mp4"'
+
+            try:  
                 
-                cc = f'**[📽️] Vid_ID:** {str(count).zfill(3)} {𝗻𝗮𝗺𝗲𝟭}.mkv\n\n**𝔹ᴀᴛᴄʜ** » **{raw_text0}\n\n** Extracted By ➤ :{MR}'
-                
-    
-                cc1 = f'**[📁] Pdf_ID:** {str(count).zfill(3)} {𝗻𝗮𝗺𝗲𝟭}.pdf \n\n**𝔹ᴀᴛᴄʜ** » **{raw_text0}\n\n** Extracted By ➤ :{MR}'
-                if ".mp4" in url:
-                    try:              		filename = file_path
+                cc = f'**[▶️] Vid_ID :** {str(count).zfill(3)}\n\n**Video Title :** {name1}\n\n**Batch Name :** {raw_text0}\n\n**Extracted By ➤ {MR}**'
+                cc1 = f'**[📑] Pdf_ID :** {str(count).zfill(3)}\n\n**File Title :** {name1}\n\n**Batch Name :** {raw_text0}\n\n**Extracted By ➤ {MR}**'                
+                if "*" in url:
+                     a, k = url.split("*", 1)
+                     url = a
+                     key = k
+                     try:
+                      	if ".pdf" in a:
+                      		Show = f"⥥ 🄳🄾🅆🄽🄻🄾🄰🄳🄸🄽🄶⬇️⬇️... »\n\n📝Name » {name}\n❄Quality » {raw_text2}\n\n🔗URL » {url}"
+                      		prog = await m.reply_text(Show)
+                      		file_path = await helper.download_file(url, name)
+                      		copy = helper.decrypt_file(file_path, key)
+                      		filename = file_path
                       		await prog.delete(True)
                       		await bot.send_document(chat_id=m.chat.id, document=filename, caption=cc1)
                       		count += 1
