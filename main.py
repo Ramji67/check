@@ -1,6 +1,4 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+
 
 import os
 import re
@@ -19,14 +17,12 @@ from pyromod import listen
 from subprocess import getstatusoutput
 
 from pyrogram import Client, filters
-import mmap
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-cookies_path = 'cookies.txt'
 
 bot = Client(
     "bot",
@@ -37,19 +33,19 @@ bot = Client(
 
 @bot.on_message(filters.command(["start"]))
 async def start(bot: Client, m: Message):
-    await m.reply_text(f"<b>Hello {m.from_user.mention} 👋\n\n I Am A Bot For Download Links From Your **.TXT** File And Then Upload That File On Telegram So Basically If You Want To Use Me First Send Me /txt Command And Then Follow Few Steps..\n\nUse /stop to stop any ongoing task.</b>")
+    await m.reply_text(f"<b>Hello {m.from_user.mention} 👋\n\n I Am A Bot For Download Links From Your **.TXT** File And Then Upload That File On Telegram So Basically If You Want To Use Me First Send Me /run Command And Then Follow Few Steps..\n Extracted By ➤ 🅹🅰🅸 🆂🅷🆁🅸 🆁🅰🅼 \n\nUse /stop to stop any ongoing task.</b>")
 
 
 @bot.on_message(filters.command("stop"))
 async def restart_handler(_, m):
-    await m.reply_text("**Stopped**🚦", True)
+    await m.reply_text("**Stopped Boss **🚦", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 
-@bot.on_message(filters.command(["txt"]))
+@bot.on_message(filters.command(["run"]))
 async def upload(bot: Client, m: Message):
-    editable = await m.reply_text('𝕤ᴇɴᴅ ᴛxᴛ ғɪʟᴇ ⚡️')
+    editable = await m.reply_text('𝕤ᴇɴᴅ ᴛxᴛ ғɪʟᴇ 🅹🅰🅸 🆂🅷🆁🅸 🆁🅰🅼 ⚡️')
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
@@ -106,7 +102,7 @@ async def upload(bot: Client, m: Message):
     
     
 
-    await editable.edit("Now Enter A Caption to add caption on your uploaded file")
+    await editable.edit("Extracted By ➤ ")
     input3: Message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     await input3.delete(True)
@@ -133,8 +129,8 @@ async def upload(bot: Client, m: Message):
         count = 1
     else:
         count = int(raw_text)
-        
-      try:
+
+    try:
         for i in range(count - 1, len(links)):
 
             V = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","") # .replace("mpd","m3u8")
@@ -193,97 +189,4 @@ async def upload(bot: Client, m: Message):
              id =  url.split("/")[-2]
              url = f"https://stream.pwjarvis.app/{id}/hls/{raw_text2}/main.m3u8"
 
-            name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
-            name = f'{str(count).zfill(3)}) {name1[:60]}'
-
-            if "youtu" in url:
-                ytf = f"b[height<={raw_text2}][ext=mp4]/bv[height<={raw_text2}][ext=mp4]+ba[ext=m4a]/b[ext=mp4]"
-            else:
-                ytf = f"b[height<={raw_text2}]/bv[height<={raw_text2}]+ba/b/bv+ba"
-
-            if "jw-prod" in url:
-                cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
-            elif 'd1wy033kfw4qbc.cloudfront.net' in url:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" --referer "https://iasscore.edugyaan.com/" -o "{name}.mp4"'
-            elif 'penpencilvod.pc.cdn.bitgravity.com' in url :
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --add-header authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjAwODUzNDQuNTksImRhdGEiOnsiX2lkIjoiNjY2NmUxY2VmNmEzYjNlNGU3ODIyMTVkIiwidXNlcm5hbWUiOiI5MDI0NTU0NTc2IiwiZmlyc3ROYW1lIjoiUmFodWwiLCJsYXN0TmFtZSI6IiIsIm9yZ2FuaXphdGlvbiI6eyJfaWQiOiI1ZWIzOTNlZTk1ZmFiNzQ2OGE3OWQxODkiLCJ3ZWJzaXRlIjoicGh5c2ljc3dhbGxhaC5jb20iLCJuYW1lIjoiUGh5c2ljc3dhbGxhaCJ9LCJlbWFpbCI6InJhaHVsY2hvdWhhbkBnbWFpbC5jb20iLCJyb2xlcyI6WyI1YjI3YmQ5NjU4NDJmOTUwYTc3OGM2ZWYiXSwiY291bnRyeUdyb3VwIjoiSU4iLCJ0eXBlIjoiVVNFUiJ9LCJpYXQiOjE3MTk0ODA1NDR9.NKpXT-e5Mzrrj1t05qLIGOGqyRbEXEGuUJ1q9xnIFNs"'
-            else:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" '
-
-            try:  
-                
-                cc = f'**[▶️] Vid_ID :** {str(count).zfill(3)}\n\n**Video Title :** {name1}\n\n**Batch Name :** {raw_text0}\n\n**Extracted By ➤ {MR}**'
-                cc1 = f'**[📑] Pdf_ID :** {str(count).zfill(3)}\n\n**File Title :** {name1}\n\n**Batch Name :** {raw_text0}\n\n**Extracted By ➤ {MR}**'                
-                if "*" in url:
-                     a, k = url.split("*", 1)
-                     url = a
-                     key = k
-                     try:
-                      	if ".pdf" in a:
-                      		Show = f"⥥ 🄳🄾🅆🄽🄻🄾🄰🄳🄸🄽🄶⬇️⬇️... »\n\n📝Name » {name}\n❄Quality » {raw_text2}\n\n🔗URL » {url}"
-                      		prog = await m.reply_text(Show)
-                      		file_path = await helper.download_file(url, name)
-                      		copy = helper.decrypt_file(file_path, key)
-                      		filename = file_path
-                      		await prog.delete(True)
-                      		await bot.send_document(chat_id=m.chat.id, document=filename, caption=cc1)
-                      		count += 1
-                      	else:
-                      		Show = f"⥥ 🄳🄾🅆🄽🄻🄾🄰🄳🄸🄽🄶⬇️⬇️... »\n\n📝Name » {name}\n❄Quality » {raw_text2}\n\n🔗URL » {url}"
-                      		prog = await m.reply_text(Show)
-                      		file_path = await helper.download_file(url, name)
-                      		copy = helper.decrypt_file(file_path, key)
-                      		filename = file_path
-                      		await prog.delete(True)
-                      		await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
-                      		count += 1
-                     except FloodWait as e:
-                      await m.reply_text(str(e))
-                      time.sleep(1)
-                      continue
-                
-                elif "drive" in url or ".ws" in url or "cwmediabkt99.crwilladmin.com" in url:
-                    try:
-                        ka = await helper.download(url, name)
-                        copy = await bot.send_document(chat_id=m.chat.id,document=ka, caption=cc1)
-                        count+=1
-                        os.remove(ka)
-                        time.sleep(2)
-                    except FloodWait as e:
-                        await m.reply_text(str(e))
-                        time.sleep(e.x)
-                        continue
-                elif ".pdf" in url:
-                    try:
-                        cmd = f'yt-dlp -o "{name}.pdf" "{url}"'
-                        download_cmd = f"{cmd} -R 25 --fragment-retries 25"
-                        os.system(download_cmd)
-                        copy = await bot.send_document(chat_id=m.chat.id, document=f'{name}.pdf', caption=cc1)
-                        count += 1
-                        os.remove(f'{name}.pdf')
-                    except FloodWait as e:
-                        await m.reply_text(str(e))
-                        time.sleep(e.x)
-                        continue
-                else:
-                    Show = f"**⥥ 🄳🄾🅆🄽🄻🄾🄰🄳🄸🄽🄶⬇️⬇️... »**\n\n**📝Name »** `{name}\n❄Quality » {raw_text2}`\n\n**🔗URL »** `{url}`"
-                    prog = await m.reply_text(Show)
-                    res_file = await helper.download_video(url, cmd, name)
-                    filename = res_file
-                    await prog.delete(True)
-                    await helper.send_vid(bot, m, cc, filename, thumb, name, prog)
-                    count += 1
-                    time.sleep(1)
-
-            except Exception as e:
-                await m.reply_text(
-                    f"**downloading Interupted **\n{str(e)}\n**Name** » {name}\n**Link** » `{url}`"
-                )
-                continue
-
-    except Exception as e:
-        await m.reply_text(e)
-    await m.reply_text("**𝔻ᴏɴᴇ 𝔹ᴏ𝕤𝕤😎**")
-
-
-bot.run()
+            name1 = links[i][0].replace("\t", ""
